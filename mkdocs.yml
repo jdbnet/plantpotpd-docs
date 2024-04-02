@@ -1,0 +1,51 @@
+site_name: Plant Pot PD Docs
+site_url: https://plantpotpd.jdbnet.co.uk
+copyright: Copyright &copy; 2024-<script>document.write(new Date().getFullYear())</script> JDB-NET
+repo_url: https://github.com/jdbnet/plantpotpd-docs
+repo_name: jdbnet/plantpotpd-docs
+theme:
+  name: material
+  favicon: 'img/favicon.ico'
+  logo: 'img/favicon.ico'
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+  features:
+  - content.code.copy
+  - content.code.select
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+  - git-authors
+  - privacy
