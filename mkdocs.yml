@@ -49,3 +49,12 @@ plugins:
       type: timeago
   - git-authors
   - privacy
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jdbnet
+    - icon: fontawesome/brands/mastodon
+      link: https://social.jdbnet.co.uk/@jdbnet
+    - icon: fontawesome/brands/discord
+      link: https://discordapp.com/users/261595054173323271
