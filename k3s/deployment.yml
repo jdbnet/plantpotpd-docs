@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plantpotpd-production
+  namespace: plantpotpd-production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plantpotpd-production
+  template:
+    metadata:
+      labels:
+        app: plantpotpd-production
+    spec:
+      containers:
+        - name: plantpotpd-production
+          image: ghcr.io/jdbnet/plantpotpd-docs:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: "plantpotpd"
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          startupProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plantpotpd-production-ingress-service
+  namespace: plantpotpd-production
+spec:
+  selector:
+    app: plantpotpd-production
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: plantpotpd-production-ingress
+  namespace: plantpotpd-production
+spec:
+  rules:
+  - host: plantpotpd.jdbnet.co.uk
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: plantpotpd-production-ingress-service
+            port:
+              number: 80
